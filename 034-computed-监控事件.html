@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset='utf-8'>
+        <title>computed事件</title>
+        <!-- 引入vue.js -->
+        <script src='https://cdn.jsdelivr.net/npm/vue/dist/vue.js'></script>
+        <!-- 引入路由模块 -->
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    </head>
+    <body>
+        <div id='app'>
+		    <h2>第一个{{firstname}}-{{lastname}}</h2>
+             <input type="text" v-model="firstname" > + 
+             <input type="text" v-model="midname" > + 
+            <input type="text" v-model="lastname" > = 
+            <input type="text" v-model="fullname">
+        </div>
+    
+    </body>
+    <script>
+         // 创建组件模板对象
+    
+        // 实例化vue对象
+        let vm = new Vue({
+            // 绑定对象
+             el:'#app',
+             data:{
+                firstname:'',
+                midname:'',
+                lastname:'',
+               // fullname:'',
+           
+                
+            },
+            methods:{
+                
+            },
+              //computed里可以定义计算属性 这些属性本质是一个方法 只不过在使用这些方法时候 是把他的名称当成属性使用 而不是刻意去调用该名称对应的函数
+			  // 计算属性在调用时候 不要加（），就当做属性名调用。
+		           //以下面为例 计算属性 fullname可以在 实例中直接绑定到v-modle
+				   // 计算属性的function中依赖的任何数据发生变化 都会触发此计算属性重新计算求值
+				   // 计算属性的结果 会被缓存以便下次使用 如果依赖数据都没有变化 则不会重新计算 以提高性能
+            computed:{   
+						"fullname":function(){
+						
+						 return this.firstname+" "+this.midname+" "+this.lastname;
+						}	
+							
+							
+		   }
+        })
+    </script>
+</html>
